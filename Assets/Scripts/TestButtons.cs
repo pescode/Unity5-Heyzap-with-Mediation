@@ -48,6 +48,11 @@ public class TestButtons : MonoBehaviour {
 		RshkAds.ShowBanner ();
 	}
 
+	public void ClickDestroyBanner()
+	{
+		RshkAds.DestroyBanner ();
+	}
+
 	void Update()
 	{
 

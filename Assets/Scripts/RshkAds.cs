@@ -50,8 +50,7 @@ public class RshkAds : MonoBehaviour {
 			InterstitialNextAdShow = PlayerPrefs.GetInt ("InterstitialNextAdShow", InterstitialNextAdShow);
 			VideoAdCount = PlayerPrefs.GetInt ("VideoAdCount", VideoAdCount);
 			VideoNextAdShow = PlayerPrefs.GetInt ("VideoNextAdShow", VideoNextAdShow);
-
-			HeyzapAds.Start("YOUR-HEYZAP-PUBLISHER-ID", HeyzapAds.FLAG_NO_OPTIONS);
+			HeyzapAds.Start("ENTER_YOUR_PUBLISHER_ID_HERE", HeyzapAds.FLAG_NO_OPTIONS);
 			HeyzapAds.ShowMediationTestSuite ();
 
 			SetupListeners ();
@@ -109,12 +108,18 @@ public class RshkAds : MonoBehaviour {
 
 		HZBannerAd.AdDisplayListener BannerListener = delegate(string adState, string adTag){
 			if (adState == "loaded") {
+				isBannerLoaded = true;
+				Debug.Log ("**********************\n**********************\nBANNER AD LOADED \n ");
 				// Do something when the banner ad is loaded
 			}
 			if (adState == "error") {
+				isBannerLoaded = false;
+				isBannerShowing = false;
+				Debug.Log ("**********************\n**********************\nBANNER AD ERROR \n ");
 				// Do something when the banner ad fails to load (they can fail when refreshing after successfully loading)
 			}
 			if (adState == "click") {
+				Debug.Log ("**********************\n**********************\nBANNER AD CLICKED \n ");
 				// Do something when the banner ad is clicked, like pause your game
 			}
 		};
@@ -186,21 +191,34 @@ public class RshkAds : MonoBehaviour {
 
 	public static void ShowBanner()
 	{
+		Debug.Log ("**********************\n**********************\nSHOW BANNER \n ");
 		//if (!IAP.IsAdsRemoved ()) {
-			
-			HZBannerShowOptions showOptions = new HZBannerShowOptions();
-			showOptions.Position = HZBannerShowOptions.POSITION_BOTTOM;
-			showOptions.SelectedAdMobSize = HZBannerShowOptions.AdMobSize.BANNER; // optional, android only
-			showOptions.SelectedFacebookSize = HZBannerShowOptions.FacebookSize.BANNER_HEIGHT_50; // optional, android only
-			HZBannerAd.ShowWithOptions (showOptions);
-			isBannerShowing = true;
-			
+		if (!isBannerLoaded) {
+			if (!isBannerShowing) {
+				Debug.Log ("**********************\n**********************\nBANNER NOT LOADED BUT NO SHOWING \n ");
+				CreateOrShowBanner ();
+			}
+		} else {
+			Debug.Log ("**********************\n**********************\nBANNER LOADED \n ");
+			CreateOrShowBanner ();
+		}
 		//}
+	}
+
+	static void CreateOrShowBanner()
+	{
+		Debug.Log ("**********************\n**********************\nCREATING BANNER \n ");
+		HZBannerShowOptions showOptions = new HZBannerShowOptions ();
+		showOptions.Position = HZBannerShowOptions.POSITION_BOTTOM;
+		showOptions.SelectedAdMobSize = HZBannerShowOptions.AdMobSize.BANNER; // optional, android only
+		showOptions.SelectedFacebookSize = HZBannerShowOptions.FacebookSize.BANNER_HEIGHT_50; // optional, android only
+		HZBannerAd.ShowWithOptions (showOptions);
+		isBannerShowing = true;
 	}
 
 	public static void HideBanner()
 	{
-		if (isBannerShowing) {
+		if (isBannerLoaded && isBannerShowing) {
 			isBannerShowing = false;
 			HZBannerAd.Hide ();
 		}
@@ -208,7 +226,11 @@ public class RshkAds : MonoBehaviour {
 
 	public static void DestroyBanner()
 	{
-		HZBannerAd.Destroy ();
+		if (isBannerLoaded) {
+			isBannerLoaded = false;
+			isBannerShowing = false;
+			HZBannerAd.Destroy ();
+		}
 	}
 
 	static void InterstitialAdOpening()
