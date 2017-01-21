@@ -4,8 +4,8 @@ Interstitial, Rewarded and Banner Ads
 
 Show Admob ads with mediation (interstitial &amp; rewarded) from different providers like AdColony, AdMob, AppLovin, Chartboost, Facebook Audience Network, UnityADS &amp; Vungle
 
-### Current version 1.0.0 ###
-
+### Current version 1.0.1 ###
+* Mejoras en RshkAds.cs y actualizado a Heyzap 10.3.0
 
 ### HOW TO USE ###
 
