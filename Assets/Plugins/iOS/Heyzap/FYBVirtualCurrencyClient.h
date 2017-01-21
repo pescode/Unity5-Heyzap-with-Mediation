@@ -44,4 +44,9 @@
  */
 - (void)requestDeltaOfCoinsWithParameters:(FYBRequestParameters *)parameters;
 
+/**
+ *  Please use [FyberSDK virtualCurrencyClient] instead
+ */
+- (instancetype)init __attribute__((unavailable("not available, use [FyberSDK virtualCurrencyClient] instead")));
+
 @end

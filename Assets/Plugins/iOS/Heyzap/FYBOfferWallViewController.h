@@ -57,4 +57,9 @@
                        completion:(void (^)(void))completion
                           dismiss:(void (^)(NSError *error))dismiss;
 
+/**
+ *  Please use [FyberSDK offerWallViewController] instead
+ */
+- (instancetype)init __attribute__((unavailable("not available, use [FyberSDK offerWallViewController] instead")));
+
 @end

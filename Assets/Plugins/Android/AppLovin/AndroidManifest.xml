@@ -5,7 +5,7 @@
     android:versionName="6.3.0-r1" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="10"
         android:targetSdkVersion="23" />
 
     <!-- These permissions are mandatory to run the AppLovin SDK -->

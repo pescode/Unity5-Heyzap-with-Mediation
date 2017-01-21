@@ -49,7 +49,7 @@
 #define NS_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
 #endif
 
-#define SDK_VERSION @"10.2.2"
+#define SDK_VERSION @"10.3.0"
 
 #if __has_feature(objc_modules)
 @import AdSupport;
@@ -273,6 +273,13 @@ extern NSString * const HZMediationNetworkCallbackNotification __attribute__((un
  *
  */
 + (FYBVirtualCurrencyClient *)virtualCurrencyClient;
+
+/**
+ *  Convenient way of creating a new instance of FYBOfferWallViewController
+ *
+ *  @return An instance of FYBOfferWallViewController
+ */
++ (FYBOfferWallViewController *)offerWallViewController;
 
 
 #pragma mark - Performance Optimization

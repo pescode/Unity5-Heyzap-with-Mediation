@@ -53,27 +53,27 @@ RshkAds.DestroyBanner();
 
 ### Plugins ###
 
-* HeyZap (Unity) v10.2.2
+* HeyZap (Unity) v10.3.0
 
 ### iOS ###
 
-* AdColony 2.6.2
-* AdMob 7.13.0
-* AppLovin 3.4.3
-* Chartboost 6.5.2
+* AdColony 2.6.3-r1
+* AdMob 7.16.0-r1
+* AppLovin 3.4.3-r1
+* Chartboost 6.5.2-r1
 * Facebook Audience Network 4.10.1
-* UnityAds 2.0.5
-* Vungle 4.0.9
+* UnityAds 2.0.5-r2
+* Vungle 4.0.9-r1
 
 ### ANDROID ###
 
-* AdColony 2.3.6
-* AdMob 9.8.0
-* AppLovin 6.3.0
-* Chartboost 6.6.0
-* Facebook Audience Network 4.10.0
-* UnityAds 2.0.5
-* Vungle 4.0.3
+* AdColony 2.3.6-r2-u1
+* AdMob 9.8.0-r1-u1
+* AppLovin 6.3.0-r1-u1
+* Chartboost 6.6.0-r1-u1
+* Facebook Audience Network 4.10.0-u2
+* UnityAds 2.0.5-r1-u1
+* Vungle 4.0.3-r1-u1
 
 You can find the libs in https://developers.heyzap.com/docs/unity_sdk_setup_and_requirements
 

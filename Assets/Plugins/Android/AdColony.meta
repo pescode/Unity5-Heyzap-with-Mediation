@@ -1,17 +1,24 @@
 fileFormatVersion: 2
 guid: 839ee9bf2c3e34913862b845688b3f75
 folderAsset: yes
-timeCreated: 1473363831
-licenseType: Free
+timeCreated: 1485009877
+licenseType: Pro
 PluginImporter:
   serializedVersion: 1
   iconMap: {}
   executionOrder: {}
   isPreloaded: 0
   platformData:
-    Any:
+    Android:
       enabled: 1
       settings: {}
+    Any:
+      enabled: 0
+      settings: {}
+    Editor:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
   userData: 
   assetBundleName: 
   assetBundleVariant: 

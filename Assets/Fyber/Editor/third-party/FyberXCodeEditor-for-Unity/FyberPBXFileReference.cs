@@ -45,7 +45,6 @@ namespace UnityEditor.XCodeEditor.FyberPlugin
 			{ ".xib", "file.xib" },
 			{ ".strings", "text.plist.strings" },
 			{ ".bundle", "wrapper.plug-in" },
-			{ ".storyboardc", "wrapper.storyboardc" },
 			{ ".dylib", "compiled.mach-o.dylib" },
 			{ ".db", "database.db"}
 		 };
@@ -72,7 +71,6 @@ namespace UnityEditor.XCodeEditor.FyberPlugin
 			{ ".xib", "PBXResourcesBuildPhase" },
 			{ ".strings", "PBXResourcesBuildPhase" },
 			{ ".bundle", "PBXResourcesBuildPhase" },
-			{ ".storyboardc", "PBXResourcesBuildPhase" },
 			{ ".dylib", "PBXFrameworksBuildPhase" },
 			{ ".db", "PBXResourcesBuildPhase" },
 		};
@@ -90,7 +88,7 @@ namespace UnityEditor.XCodeEditor.FyberPlugin
 				this.Add ("fileEncoding", "4");
 			}
 
-			if (fileName.Contains("+") || fileName.Contains("@") || fileName.Contains("~")) {
+			if (fileName.Contains("+") || fileName.Contains("@")) {
 				fileName = string.Format ("\"{0}\"", fileName);
 			}
 

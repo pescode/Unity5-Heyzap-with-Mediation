@@ -1,6 +1,21 @@
 fileFormatVersion: 2
-guid: 9c205f3e6616d4d0081ffd7458038218
-DefaultImporter:
+guid: 24d5859d4c9cf4f668ac19c969efc7ac
+PluginImporter:
+  serializedVersion: 1
+  iconMap: {}
+  executionOrder: {}
+  isPreloaded: 0
+  platformData:
+    Any:
+      enabled: 0
+      settings: {}
+    Editor:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
+    iOS:
+      enabled: 1
+      settings: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 

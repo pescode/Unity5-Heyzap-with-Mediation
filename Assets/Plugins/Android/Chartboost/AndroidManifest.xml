@@ -5,7 +5,7 @@
     android:versionName="6.6.0-r1" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="10"
         android:targetSdkVersion="24" />
 
     <!-- Chartboost required permissions -->
