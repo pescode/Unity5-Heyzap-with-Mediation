@@ -14,17 +14,13 @@ using System;
 using UnityEngine.Analytics;
 
 public class RshkAds : MonoBehaviour {
+	public static bool IsWatchingRewarded = false;
 	static RshkAds instance;
 
 	static int InterstitialMinNextAdShow = 0;
 	static int InterstitialMaxNextAdShow = 2;
 	static int InterstitialNextAdShow = 1;
 	static int InterstitialAdCount = 0;
-
-	static int VideoMinNextAdShow = 0;
-	static int VideoMaxNextAdShow = 2;
-	static int VideoNextAdShow = 0;
-	static int VideoAdCount = 0;
 
 	public static bool HasWatchedRewardedAds = false;
 	public delegate void actionRewardedCompleted();
@@ -33,7 +29,6 @@ public class RshkAds : MonoBehaviour {
 	//
 	static bool isRewardedLoaded = false;
 	static bool isInterstitialLoaded = false;
-	static bool isVideoLoaded = false;
 	static bool isBannerLoaded = false;
 	static bool isBannerShowing = false;
 	static bool canShowBanner = false;
@@ -48,12 +43,19 @@ public class RshkAds : MonoBehaviour {
 			DontDestroyOnLoad (gameObject);
 			InterstitialAdCount = PlayerPrefs.GetInt ("InterstitialAdCount", InterstitialAdCount);
 			InterstitialNextAdShow = PlayerPrefs.GetInt ("InterstitialNextAdShow", InterstitialNextAdShow);
-			VideoAdCount = PlayerPrefs.GetInt ("VideoAdCount", VideoAdCount);
-			VideoNextAdShow = PlayerPrefs.GetInt ("VideoNextAdShow", VideoNextAdShow);
-			HeyzapAds.Start("ENTER_YOUR_PUBLISHER_ID_HERE", HeyzapAds.FLAG_NO_OPTIONS);
-			HeyzapAds.ShowMediationTestSuite ();
-
+			HeyzapAds.Start("f96d9e879f303781f43287b02148a991", HeyzapAds.FLAG_NO_OPTIONS);
+			//HeyzapAds.HideDebugLogs ();
+			HZIncentivizedAd.Fetch();
 			SetupListeners ();
+			HeyzapAds.ShowMediationTestSuite ();
+		}
+	}
+
+	void Update(){
+		if (!isBannerShowing) {
+			if (isBannerLoaded) {
+				HZBannerAd.Hide ();
+			}
 		}
 	}
 
@@ -110,7 +112,6 @@ public class RshkAds : MonoBehaviour {
 			if (adState == "loaded") {
 				isBannerLoaded = true;
 				Debug.Log ("**********************\n**********************\nBANNER AD LOADED \n ");
-				// Do something when the banner ad is loaded
 			}
 			if (adState == "error") {
 				isBannerLoaded = false;
@@ -141,7 +142,6 @@ public class RshkAds : MonoBehaviour {
 				if (!HasWatchedRewardedAds) {
 					InterstitialAdCount = 0;
 					InterstitialNextAdShow = UnityEngine.Random.Range (InterstitialMinNextAdShow, InterstitialMaxNextAdShow);
-					VideoAdCount = 0;
 					PlayerPrefs.SetInt ("InterstitialNextAdShow", InterstitialNextAdShow);
 					HZInterstitialAd.Show ();
 					Analytics.CustomEvent ("ADS Interstitial", new Dictionary<string, object> {
@@ -160,33 +160,10 @@ public class RshkAds : MonoBehaviour {
 			{
 				{ "Tag", tag }
 			});
+		IsWatchingRewarded = true;
 		HasWatchedRewardedAds = true;
 		InterstitialAdCount = 0;
-		VideoAdCount = 0;
 		HZIncentivizedAd.Show ();
-	}
-
-	public static void ShowVideo(string tag = "video")
-	{
-		Debug.Log ("**********************\n**********************\nSHOW VIDEO! \n " + (VideoAdCount+1) + "=" + VideoNextAdShow);
-
-		//if (!IAP.IsAdsRemoved ()) {
-			VideoAdCount++;
-			PlayerPrefs.SetInt ("VideoAdCount", VideoAdCount);
-			if (HZInterstitialAd.IsAvailable()) {
-				if (VideoAdCount >= VideoNextAdShow) {
-					InterstitialAdCount = 0;
-					VideoAdCount = 0;
-					VideoNextAdShow = UnityEngine.Random.Range (VideoMinNextAdShow, VideoMaxNextAdShow);
-					PlayerPrefs.SetInt ("VideoNextAdShow", VideoNextAdShow);
-					HZInterstitialAd.Show ();
-					Analytics.CustomEvent ("ADS Video", new Dictionary<string, object> {
-						{ "Tag", tag }
-					});
-
-				}	
-			}
-		//}
 	}
 
 	public static void ShowBanner()
@@ -218,10 +195,7 @@ public class RshkAds : MonoBehaviour {
 
 	public static void HideBanner()
 	{
-		if (isBannerLoaded && isBannerShowing) {
-			isBannerShowing = false;
-			HZBannerAd.Hide ();
-		}
+		isBannerShowing = false;
 	}
 
 	public static void DestroyBanner()
@@ -237,20 +211,14 @@ public class RshkAds : MonoBehaviour {
 	{
 		Debug.Log ("**********************\n**********************\nInterstitial opening");
 		AudioListener.pause = true;
-		Time.timeScale = 0.01f;
+		//Time.timeScale = 0.01f;
 	}
 
 	static void InterstitialAdClose()
 	{
 		Debug.Log ("**********************\n**********************\nInterstitial close");
-		instance.StartCoroutine (InterstitialDone ());
-	}
-
-	static IEnumerator InterstitialDone()
-	{
-		yield return new WaitForSeconds (1f);
 		AudioListener.pause = false;
-		Time.timeScale = 1;
+		//Time.timeScale = 1;
 	}
 
 	public static bool IsRewardedAdsAvailable()
@@ -266,14 +234,10 @@ public class RshkAds : MonoBehaviour {
 	static void RewardedAdClose()
 	{
 		Debug.Log ("**********************\n**********************\nRewarded Ad Close");
-		instance.StartCoroutine (RewardedDone ());
-	}
-	// We need this to avoid errors on Android
-	static IEnumerator RewardedDone()
-	{
-		yield return new WaitForSeconds (1f);
 		AudioListener.pause = false;
-		OnRewardedCompleted();
+		IsWatchingRewarded = false;
+		HZIncentivizedAd.Fetch ();
+		OnRewardedCompleted ();
 	}
 		
 }
