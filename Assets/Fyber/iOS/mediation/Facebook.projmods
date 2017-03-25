@@ -1,9 +1,9 @@
 {
- "version": "4.10.1-r4",
+ "version": "4.19.0-r1",
   "group": "Mediation/Facebook",
   "patches": [],
     "libs": [
-    "Fyber/iOS/mediation/Facebook/Fyber_FacebookAudienceNetwork_4.10.1-r4.embeddedframework/Fyber_FacebookAudienceNetwork_4.10.1-r4.framework:<group>",
+    "Fyber/iOS/mediation/Facebook/Fyber_FacebookAudienceNetwork_4.19.0-r1.embeddedframework/Fyber_FacebookAudienceNetwork_4.19.0-r1.framework:<group>",
     ],
   "librarysearchpaths": [],
   "frameworks": [
@@ -14,7 +14,7 @@
     "UIKit.framework"
   ],
     "frameworksearchpaths": [
-    "Fyber/iOS/mediation/Facebook/Fyber_FacebookAudienceNetwork_4.10.1-r4.embeddedframework/"
+    "Fyber/iOS/mediation/Facebook/Fyber_FacebookAudienceNetwork_4.19.0-r1.embeddedframework/"
     ],
   "headerpaths": [
   ],

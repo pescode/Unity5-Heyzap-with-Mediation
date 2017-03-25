@@ -2,19 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fyber.mediation.applovin"
     android:versionCode="1"
-    android:versionName="6.3.0-r1" >
+    android:versionName="6.4.2-r1" >
 
     <uses-sdk
         android:minSdkVersion="10"
-        android:targetSdkVersion="23" />
+        android:targetSdkVersion="25" />
 
-    <!-- These permissions are mandatory to run the AppLovin SDK -->
+    <!-- These permissions are mandatory to run AppLovin SDK -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <!-- These permissions are strongly recommended and will result in higher performance -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application>
         <activity android:name="com.applovin.adview.AppLovinInterstitialActivity" />

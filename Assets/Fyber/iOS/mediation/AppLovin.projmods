@@ -1,9 +1,9 @@
 {
-  "version": "3.4.3-r1",
+  "version": "3.5.2-r2",
   "group": "Mediation/AppLovin",
   "patches": [],
   "libs": [
-    "Fyber/iOS/mediation/AppLovin/Fyber_AppLovin_3.4.3-r1.embeddedframework/Fyber_AppLovin_3.4.3-r1.framework:<group>"
+    "Fyber/iOS/mediation/AppLovin/Fyber_AppLovin_3.5.2-r2.embeddedframework/Fyber_AppLovin_3.5.2-r2.framework:<group>"
   ],
   "librarysearchpaths": [],
   "frameworks": [
@@ -15,11 +15,12 @@
     "MediaPlayer.framework",
     "SystemConfiguration.framework",
     "UIKit.framework",
-    "StoreKit.framework:weak"
+    "StoreKit.framework",
+    "WebKit.framework:weak"
   ],
   "headerpaths": [],
   "frameworksearchpaths": [
-    "Fyber/iOS/mediation/AppLovin/Fyber_AppLovin_3.4.3-r1.embeddedframework/"
+    "Fyber/iOS/mediation/AppLovin/Fyber_AppLovin_3.5.2-r2.embeddedframework/"
   ],
   "files": [],
   "folders": [],

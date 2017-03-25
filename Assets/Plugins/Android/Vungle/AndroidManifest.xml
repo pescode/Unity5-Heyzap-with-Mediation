@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fyber.mediation.vungle"
     android:versionCode="1"
-    android:versionName="4.0.3-r1" >
+    android:versionName="4.0.3-r2" >
 
     <uses-sdk
         android:minSdkVersion="10"
